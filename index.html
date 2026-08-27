@@ -84,7 +84,7 @@
         </button>
       </section>
 
-      <!-- VISTA 3: RESULTADOS + FORMULARIO SIMULADO -->
+      <!-- VISTA 3: RESULTADOS -->
       <section id="tab-results" class="p-5 hidden">
         <div class="text-center mb-3">
           <span class="inline-block px-3 py-1 bg-rosa text-caramelo text-[9px] rounded-full font-medium">Diagnóstico Completado</span>
@@ -96,7 +96,6 @@
           <p id="profile-summary" class="text-xs text-caramelo/80 leading-relaxed italic"></p>
         </div>
 
-        <!-- Formulario que NO envía datos a ningún servidor -->
         <form onsubmit="handleFakeSubmit(event)" class="bg-white p-4 rounded-2xl border border-cafe/15 mb-4 space-y-3 shadow-sm">
           <h4 class="font-serif text-xs font-semibold text-caramelo text-center">Guarda tu Receta y Obtén 10% OFF</h4>
           <div>
@@ -110,7 +109,6 @@
           </button>
         </form>
 
-        <!-- Contenedor del Mensaje de Éxito Simulado -->
         <div id="form-success-message" class="hidden bg-green-50 border border-green-200 text-green-800 text-xs p-3 rounded-xl text-center mb-4">
           ¡Listo! Tu rutina y tu 10% de descuento se aplicaron a tu carrito local. 🎉
         </div>
@@ -123,15 +121,16 @@
         </button>
       </section>
 
-      <!-- VISTA 4: BOUTIQUE -->
+      <!-- VISTA 4: BOUTIQUE (CATÁLOGO AMPLIADO) -->
       <section id="tab-catalog" class="p-5 hidden">
         <h2 class="font-serif text-xl text-caramelo mb-1 text-center">Boutique Maison</h2>
+        <p class="text-xs text-cafe/80 text-center mb-4">Colección de infusiones botánicas y elixires capilares.</p>
         <div class="grid grid-cols-2 gap-3" id="catalog-grid"></div>
       </section>
 
     </div>
 
-    <!-- MODAL VISTA DEL CARRITO DE COMPRAS -->
+    <!-- MODAL VISTA DEL CARRITO -->
     <div id="cart-modal" class="absolute inset-0 bg-caramelo/40 backdrop-blur-sm flex items-end justify-center hidden z-30">
       <div class="bg-crema w-full rounded-t-3xl p-6 border-t border-cafe/20 flex flex-col max-h-[85%]">
         <div class="flex justify-between items-center border-b border-cafe/10 pb-3 mb-3">
@@ -180,11 +179,16 @@
   </main>
 
   <script>
+    // Lista ampliada de 8 productos ficticios
     const catalogData = [
-      { id: 1, name: "Elixir de Vanille", category: "Shampoo Limpieza Suave", price: 28 },
-      { id: 2, name: "Masque Caramel Nutritif", category: "Mascarilla Porosidad Alta", price: 34 },
-      { id: 3, name: "Sérum Hydro-Light", category: "Acondicionador Porosidad Baja", price: 30 },
-      { id: 4, name: "Huile Protectrice Thermo", category: "Óleo Reparador de Daño", price: 32 }
+      { id: 1, name: "Elixir de Vanille", category: "Shampoo Limpieza Suave", desc: "Sin sulfatos, ideal para uso frecuente.", price: 28, image: "🧴" },
+      { id: 2, name: "Masque Caramel Nutritif", category: "Mascarilla Porosidad Alta", desc: "Restauración profunda con manteca de karité.", price: 34, image: "🏺" },
+      { id: 3, name: "Sérum Hydro-Light", category: "Acondicionador Porosidad Baja", desc: "Hidratación ligera con extracto de vainilla.", price: 30, image: "💧" },
+      { id: 4, name: "Huile Protectrice Thermo", category: "Óleo Reparador de Daño", desc: "Protector térmico hasta 230°C.", price: 32, image: "✨" },
+      { id: 5, name: "Crème Définition Boucles", category: "Crema de Peinar Rizos", desc: "Moldea e hidrata ondas y rizos sin peso.", price: 29, image: "🌀" },
+      { id: 6, name: "Bain Purifiant Cuir Chevelu", category: "Tratamiento Escalpular", desc: "Exfoliante suave para cuero cabelludo graso.", price: 36, image: "🌿" },
+      { id: 7, name: "Nectar Protéiné Réparateur", category: "Tratamiento de Proteína", desc: "Reconstrucción capilar para hebra dañada.", price: 38, image: "🧪" },
+      { id: 8, name: "Bruma Parfumée Vanille-Rose", category: "Perfume Capilar & Brillo", desc: "Aroma de autor con aceites brillantes.", price: 26, image: "🌸" }
     ];
 
     const quizData = [
@@ -201,7 +205,28 @@
     let cart = [];
     let hasDiscount = false;
 
-    // Maneja la simulación del formulario localmente
+    // Renderizado dinámico de los 8 productos
+    window.renderCatalog = function() {
+      const grid = document.getElementById('catalog-grid');
+      if(!grid) return;
+      grid.innerHTML = catalogData.map(p => `
+        <div class="bg-white p-3 rounded-2xl border border-cafe/15 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="text-center py-2.5 bg-vainilla/40 rounded-xl mb-2 text-2xl">${p.image}</div>
+            <span class="text-[8px] uppercase tracking-wider text-cafe font-semibold block leading-tight">${p.category}</span>
+            <h4 class="font-serif text-xs font-semibold text-caramelo leading-tight mt-0.5">${p.name}</h4>
+            <p class="text-[9px] text-caramelo/70 mt-1 line-clamp-2 leading-tight">${p.desc}</p>
+          </div>
+          <div class="mt-3 flex items-center justify-between border-t border-cafe/10 pt-2">
+            <span class="text-xs font-bold text-caramelo">$${p.price} USD</span>
+            <button onclick="addToCart(${p.id})" class="px-2.5 py-1 bg-caramelo text-crema text-[10px] rounded-lg font-medium hover:bg-cafe transition-all cursor-pointer">
+              + Agregar
+            </button>
+          </div>
+        </div>
+      `).join('');
+    };
+
     window.handleFakeSubmit = function(e) {
       e.preventDefault();
       hasDiscount = true;
@@ -280,7 +305,12 @@
       document.getElementById('profile-summary').innerText = 
         `Porosidad ${userAnswers[1].toUpperCase()} con textura ${userAnswers[0]} y cuero cabelludo ${userAnswers[3]}. Tratamiento proteico optimizado listo.`;
       
-      window.currentRecommendedRitual = [catalogData[0], userAnswers[1] === 'alta' ? catalogData[1] : catalogData[2], catalogData[3]];
+      // Ritual dinámico basado en las respuestas
+      window.currentRecommendedRitual = [
+        catalogData[0], // Shampoo Elixir
+        userAnswers[1] === 'alta' ? catalogData[1] : catalogData[2], // Mascarilla o Sérum
+        userAnswers[4] === 'quimico' ? catalogData[6] : catalogData[3] // Proteína u Óleo
+      ];
 
       const container = document.getElementById('products-container');
       container.innerHTML = window.currentRecommendedRitual.map(p => `
@@ -326,6 +356,8 @@
         document.getElementById('discount-badge').classList.remove('hidden');
         document.getElementById('discount-badge').classList.add('flex');
         document.getElementById('discount-amount').innerText = `-$${discountAmount.toFixed(2)} USD`;
+      } else {
+        document.getElementById('discount-badge').classList.add('hidden');
       }
 
       if(cart.length === 0) {
@@ -342,7 +374,7 @@
           </div>
           <div class="flex items-center space-x-3">
             <span class="text-xs font-bold text-caramelo">$${i.price * i.qty} USD</span>
-            <button onclick="removeFromCart(${i.id})" class="text-xs text-red-400">🗑️</button>
+            <button onclick="removeFromCart(${i.id})" class="text-xs text-red-400 cursor-pointer">🗑️</button>
           </div>
         </div>
       `).join('');
@@ -371,6 +403,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       renderQuestion();
+      renderCatalog();
     });
   </script>
 </body>
