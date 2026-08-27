@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Le Maison Vanille — Routine Capillaire Sur Mesure</title>
   
-  <!-- CDN de Tailwind CSS con Configuración Extendida -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -33,134 +32,130 @@
 </head>
 <body class="bg-beige text-caramelo font-sans min-h-screen flex items-center justify-center p-2 sm:p-4">
 
-  <!-- Envoltorio Principal Móvil -->
-  <main class="w-full max-w-md bg-crema rounded-3xl shadow-2xl overflow-hidden border border-cafe/20 flex flex-col h-[750px] relative">
+  <main class="w-full max-w-md bg-crema rounded-3xl shadow-2xl overflow-hidden border border-cafe/20 flex flex-col h-[780px] relative">
     
-    <!-- Encabezado -->
-    <header class="text-center pt-6 pb-3 px-6 border-b border-cafe/10 flex justify-between items-center bg-crema/90 backdrop-blur z-10">
+    <!-- Header -->
+    <header class="text-center pt-5 pb-3 px-6 border-b border-cafe/10 flex justify-between items-center bg-crema/90 backdrop-blur z-10">
       <div class="w-6"></div>
       <div>
-        <h1 class="font-serif text-2xl tracking-wide font-semibold text-caramelo">LE MAISON VANILLE</h1>
-        <p class="text-[9px] uppercase tracking-widest text-cafe font-medium">Paris — Haute Parfumerie</p>
+        <h1 class="font-serif text-xl tracking-wide font-semibold text-caramelo">LE MAISON VANILLE</h1>
+        <p class="text-[8px] uppercase tracking-widest text-cafe font-medium">Haute Parfumerie Capillaire</p>
       </div>
-      <button onclick="switchTab('catalog')" class="relative cursor-pointer focus:outline-none" aria-label="Ver Carrito">
+      <button onclick="toggleCartModal(true)" class="relative cursor-pointer focus:outline-none" aria-label="Ver Carrito">
         <span class="text-lg">🛍️</span>
         <span id="cart-count" class="absolute -top-1 -right-2 bg-caramelo text-crema text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
       </button>
     </header>
 
-    <!-- Área de Contenido -->
+    <!-- Content Body -->
     <div class="flex-1 overflow-y-auto pb-20">
 
-      <!-- VISTA 1: INICIO -->
-      <section id="tab-home" class="p-6 space-y-6">
-        <div class="bg-vainilla/70 p-6 rounded-2xl border border-cafe/10 text-center relative overflow-hidden">
-          <span class="text-xs uppercase tracking-widest text-cafe font-semibold">Ritual Capilar Sur Mesure</span>
-          <h2 class="font-serif text-3xl text-caramelo my-2">El arte del cuidado capilar personalizado</h2>
-          <p class="text-xs text-caramelo/80 mb-4 leading-relaxed">Descubre la combinación exacta de botánica y extracto puro de vainilla para tu hebra capilar.</p>
+      <!-- VISTA 1: HOME -->
+      <section id="tab-home" class="p-5 space-y-5">
+        <div class="bg-vainilla/70 p-5 rounded-2xl border border-cafe/10 text-center relative overflow-hidden">
+          <span class="text-[10px] uppercase tracking-widest text-cafe font-semibold">Diagnóstico Capilar Real</span>
+          <h2 class="font-serif text-2xl text-caramelo my-2">Encuentra tu rutina capilar exacta</h2>
+          <p class="text-xs text-caramelo/80 mb-4 leading-relaxed">Cuestionario visual de 5 pasos para identificar porosidad, daño y patrón de hebra.</p>
           <button onclick="switchTab('quiz')" class="w-full py-3 bg-caramelo text-crema rounded-full text-xs font-medium shadow-md hover:bg-cafe transition-all cursor-pointer">
-            Iniciar Diagnóstico Gratuito ✨
-          </button>
-        </div>
-
-        <div>
-          <h3 class="font-serif text-xl text-caramelo mb-3">La Experiencia Vanille</h3>
-          <div class="grid grid-cols-2 gap-3">
-            <div class="bg-white p-3 rounded-xl border border-cafe/10">
-              <span class="text-xl">🌿</span>
-              <h4 class="font-serif text-sm font-semibold text-caramelo mt-1">100% Orgánico</h4>
-              <p class="text-[10px] text-cafe mt-0.5">Libre de sulfatos y parabenos.</p>
-            </div>
-            <div class="bg-white p-3 rounded-xl border border-cafe/10">
-              <span class="text-xl">🧪</span>
-              <h4 class="font-serif text-sm font-semibold text-caramelo mt-1">Fórmula Activa</h4>
-              <p class="text-[10px] text-cafe mt-0.5">Adaptada a tu porosidad.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-rosa/40 p-4 rounded-xl border border-cafe/10 flex items-center justify-between">
-          <div>
-            <h4 class="font-serif text-base text-caramelo">Explora la Boutique</h4>
-            <p class="text-[11px] text-cafe">Colección exclusiva.</p>
-          </div>
-          <button onclick="switchTab('catalog')" class="px-4 py-2 bg-white text-caramelo rounded-full text-xs font-medium border border-cafe/20 cursor-pointer">
-            Ver Productos
+            Iniciar Test Visual ✨
           </button>
         </div>
       </section>
 
-      <!-- VISTA 2: CUESTIONARIO -->
-      <section id="tab-quiz" class="p-6 hidden">
+      <!-- VISTA 2: QUIZ -->
+      <section id="tab-quiz" class="p-5 hidden">
         <div class="mb-4">
           <div class="flex justify-between text-xs text-cafe mb-1">
-            <span id="step-label">Paso 1 de 3</span>
-            <span id="step-percentage">33%</span>
+            <span id="step-label">Paso 1 de 5</span>
+            <span id="step-percentage">20%</span>
           </div>
           <div class="w-full bg-beige h-1.5 rounded-full overflow-hidden">
-            <div id="progress-bar" class="bg-cafe h-full w-1/3 transition-all duration-300"></div>
+            <div id="progress-bar" class="bg-cafe h-full w-1/5 transition-all duration-300"></div>
           </div>
         </div>
 
-        <h2 id="question-title" class="font-serif text-2xl text-caramelo mb-1 text-center"></h2>
+        <h2 id="question-title" class="font-serif text-xl text-caramelo mb-1 text-center"></h2>
         <p id="question-desc" class="text-xs text-cafe/80 text-center mb-4"></p>
 
-        <div id="options-container" class="space-y-3"></div>
+        <div id="options-container" class="grid grid-cols-1 gap-2.5"></div>
 
-        <button id="next-btn" onclick="nextQuestion()" disabled class="w-full py-3 px-6 rounded-full bg-caramelo text-crema font-medium text-xs transition-all opacity-50 cursor-not-allowed shadow-md hover:bg-cafe mt-6">
+        <button id="next-btn" onclick="nextQuestion()" disabled class="w-full py-3 px-6 rounded-full bg-caramelo text-crema font-medium text-xs transition-all opacity-50 cursor-not-allowed shadow-md hover:bg-cafe mt-5">
           Continuar
         </button>
       </section>
 
-      <!-- VISTA 3: RESULTADOS -->
-      <section id="tab-results" class="p-6 hidden">
-        <div class="text-center mb-4">
-          <span class="inline-block px-3 py-1 bg-rosa text-caramelo text-[10px] rounded-full font-medium mb-1">Diagnóstico Completado</span>
-          <h2 class="font-serif text-2xl text-caramelo">Tu Ritual Personalizado</h2>
+      <!-- VISTA 3: RESULTADOS + FORMULARIO SIMULADO -->
+      <section id="tab-results" class="p-5 hidden">
+        <div class="text-center mb-3">
+          <span class="inline-block px-3 py-1 bg-rosa text-caramelo text-[9px] rounded-full font-medium">Diagnóstico Completado</span>
+          <h2 class="font-serif text-xl text-caramelo mt-1">Tu Receta Capilar Personalizada</h2>
         </div>
 
-        <div class="bg-vainilla/60 p-4 rounded-2xl mb-4 border border-cafe/10">
-          <h3 class="font-serif text-base text-caramelo mb-1">Perfil Capilar</h3>
-          <p id="profile-summary" class="text-xs text-caramelo/80 leading-relaxed"></p>
+        <div class="bg-vainilla/60 p-4 rounded-2xl mb-4 border border-cafe/10 space-y-2">
+          <h3 class="font-serif text-sm font-semibold text-caramelo border-b border-cafe/10 pb-1">Análisis de la Hebra:</h3>
+          <p id="profile-summary" class="text-xs text-caramelo/80 leading-relaxed italic"></p>
         </div>
 
-        <h3 class="font-serif text-base text-caramelo mb-2">Tratamiento Recomendado</h3>
-        <div id="products-container" class="space-y-2 mb-4"></div>
+        <!-- Formulario que NO envía datos a ningún servidor -->
+        <form onsubmit="handleFakeSubmit(event)" class="bg-white p-4 rounded-2xl border border-cafe/15 mb-4 space-y-3 shadow-sm">
+          <h4 class="font-serif text-xs font-semibold text-caramelo text-center">Guarda tu Receta y Obtén 10% OFF</h4>
+          <div>
+            <input type="text" id="user-name" required placeholder="Tu nombre" class="w-full text-xs p-2.5 bg-beige/40 rounded-xl border border-cafe/20 focus:outline-none focus:border-caramelo" />
+          </div>
+          <div>
+            <input type="email" id="user-email" required placeholder="Tu correo electrónico" class="w-full text-xs p-2.5 bg-beige/40 rounded-xl border border-cafe/20 focus:outline-none focus:border-caramelo" />
+          </div>
+          <button type="submit" class="w-full py-2.5 bg-cafe text-crema rounded-xl text-xs font-medium hover:bg-caramelo transition-all cursor-pointer">
+            Guardar mi Diagnóstico ✨
+          </button>
+        </form>
 
-        <button onclick="switchTab('catalog')" class="w-full py-3 bg-caramelo text-crema rounded-full text-xs font-medium shadow cursor-pointer">
-          Comprar Ritual Completo
+        <!-- Contenedor del Mensaje de Éxito Simulado -->
+        <div id="form-success-message" class="hidden bg-green-50 border border-green-200 text-green-800 text-xs p-3 rounded-xl text-center mb-4">
+          ¡Listo! Tu rutina y tu 10% de descuento se aplicaron a tu carrito local. 🎉
+        </div>
+
+        <h3 class="font-serif text-sm text-caramelo mb-2 font-semibold">Ritual Recomendado</h3>
+        <div id="products-container" class="space-y-2.5 mb-4"></div>
+
+        <button onclick="addRitualToCart()" class="w-full py-3 bg-caramelo text-crema rounded-full text-xs font-medium shadow cursor-pointer hover:bg-cafe transition-all">
+          Agregar Ritual Completo al Carrito 🛍️
         </button>
       </section>
 
       <!-- VISTA 4: BOUTIQUE -->
-      <section id="tab-catalog" class="p-6 hidden">
-        <h2 class="font-serif text-2xl text-caramelo mb-1 text-center">Colección Maison</h2>
-        <p class="text-xs text-cafe text-center mb-4">Extractos franceses e ingredientes botánicos.</p>
-
+      <section id="tab-catalog" class="p-5 hidden">
+        <h2 class="font-serif text-xl text-caramelo mb-1 text-center">Boutique Maison</h2>
         <div class="grid grid-cols-2 gap-3" id="catalog-grid"></div>
       </section>
 
     </div>
 
-    <!-- MODAL DE DETALLES -->
-    <div id="product-modal" class="absolute inset-0 bg-caramelo/40 backdrop-blur-sm flex items-end justify-center hidden z-20">
-      <div class="bg-crema w-full rounded-t-3xl p-6 border-t border-cafe/20 space-y-3">
-        <div class="flex justify-between items-start">
-          <div>
-            <span id="modal-category" class="text-[10px] uppercase text-cafe font-semibold"></span>
-            <h3 id="modal-title" class="font-serif text-2xl text-caramelo"></h3>
+    <!-- MODAL VISTA DEL CARRITO DE COMPRAS -->
+    <div id="cart-modal" class="absolute inset-0 bg-caramelo/40 backdrop-blur-sm flex items-end justify-center hidden z-30">
+      <div class="bg-crema w-full rounded-t-3xl p-6 border-t border-cafe/20 flex flex-col max-h-[85%]">
+        <div class="flex justify-between items-center border-b border-cafe/10 pb-3 mb-3">
+          <div class="flex items-center space-x-2">
+            <span class="text-xl">🛍️</span>
+            <h3 class="font-serif text-xl text-caramelo font-semibold">Tu Carrito</h3>
           </div>
-          <button onclick="closeModal()" class="text-caramelo text-lg focus:outline-none cursor-pointer">✕</button>
+          <button onclick="toggleCartModal(false)" class="text-caramelo text-lg focus:outline-none cursor-pointer">✕</button>
         </div>
-        <p id="modal-desc" class="text-xs text-caramelo/80 leading-relaxed"></p>
-        <div class="bg-vainilla/50 p-3 rounded-xl border border-cafe/10">
-          <h4 class="text-[11px] font-semibold text-caramelo">Ingredientes Clave:</h4>
-          <p id="modal-ingredients" class="text-[10px] text-cafe italic"></p>
-        </div>
-        <div class="flex items-center justify-between pt-2">
-          <span id="modal-price" class="font-serif text-xl font-bold text-caramelo"></span>
-          <button id="modal-add-btn" class="px-6 py-2.5 bg-caramelo text-crema rounded-full text-xs font-medium cursor-pointer">
-            Agregar al Carrito
+
+        <div id="cart-items-list" class="flex-1 overflow-y-auto space-y-2.5 pr-1"></div>
+
+        <div class="border-t border-cafe/10 pt-4 mt-3 space-y-3">
+          <div id="discount-badge" class="hidden justify-between items-center text-xs text-green-700 bg-green-50 p-2 rounded-lg font-medium">
+            <span>Descuento Diagnóstico (10%):</span>
+            <span id="discount-amount">-$0 USD</span>
+          </div>
+          <div class="flex justify-between items-center text-sm font-bold text-caramelo">
+            <span>Total Estimado:</span>
+            <span id="cart-total">$0 USD</span>
+          </div>
+          <button onclick="checkoutWhatsApp()" class="w-full py-3 bg-caramelo text-crema rounded-full text-xs font-medium shadow cursor-pointer hover:bg-cafe transition-all flex items-center justify-center space-x-2">
+            <span>Pedir por WhatsApp</span>
+            <span>💬</span>
           </button>
         </div>
       </div>
@@ -168,133 +163,58 @@
 
     <!-- Navegación Inferior -->
     <nav class="absolute bottom-0 inset-x-0 bg-white border-t border-cafe/10 py-2.5 px-6 flex justify-around items-center z-10">
-      <button onclick="switchTab('home')" id="nav-home" class="flex flex-col items-center text-caramelo focus:outline-none cursor-pointer">
+      <button onclick="switchTab('home')" class="flex flex-col items-center text-caramelo cursor-pointer">
         <span class="text-base">🏛️</span>
-        <span class="text-[10px] mt-0.5 font-medium">Inicio</span>
+        <span class="text-[9px] mt-0.5 font-medium">Inicio</span>
       </button>
-      <button onclick="switchTab('quiz')" id="nav-quiz" class="flex flex-col items-center text-cafe opacity-60 focus:outline-none cursor-pointer">
+      <button onclick="switchTab('quiz')" class="flex flex-col items-center text-cafe opacity-60 cursor-pointer">
         <span class="text-base">✨</span>
-        <span class="text-[10px] mt-0.5 font-medium">Diagnóstico</span>
+        <span class="text-[9px] mt-0.5 font-medium">Diagnóstico</span>
       </button>
-      <button onclick="switchTab('catalog')" id="nav-catalog" class="flex flex-col items-center text-cafe opacity-60 focus:outline-none cursor-pointer">
+      <button onclick="switchTab('catalog')" class="flex flex-col items-center text-cafe opacity-60 cursor-pointer">
         <span class="text-base">🧴</span>
-        <span class="text-[10px] mt-0.5 font-medium">Boutique</span>
+        <span class="text-[9px] mt-0.5 font-medium">Boutique</span>
       </button>
     </nav>
 
   </main>
 
-  <!-- Lógica Global Protegida -->
   <script>
-    // Variables de estado
     const catalogData = [
-      { id: 1, name: "Elixir de Vanille", category: "Shampoo Nutritivo", price: "$28 USD", desc: "Limpieza ultrasuave impregnada con aceite de vainilla de Madagascar.", ingredients: "Vainilla Bourbon, Aceite de Argán, Keratina Vegetal." },
-      { id: 2, name: "Masque Caramel", category: "Mascarilla Reparadora", price: "$34 USD", desc: "Tratamiento intensivo para sellar la cutícula y restaurar la elasticidad.", ingredients: "Extracto de Caramelo, Manteca de Karité, Proteína de Seda." },
-      { id: 3, name: "Huile Sublime", category: "Óleo de Brillo", price: "$30 USD", desc: "Gotas de seda que protegen contra la humedad y el calor térmico.", ingredients: "Aceite de Jojoba, Macadamia, Infusión de Vainilla Francesa." },
-      { id: 4, name: "Brume Parfumée", category: "Perfume Capilar", price: "$22 USD", desc: "Bruma ligera que aporta fragancia y protección anti-frizz todo el día.", ingredients: "Agua de Rosas, Extracto de Vainilla, Filtro UV." }
+      { id: 1, name: "Elixir de Vanille", category: "Shampoo Limpieza Suave", price: 28 },
+      { id: 2, name: "Masque Caramel Nutritif", category: "Mascarilla Porosidad Alta", price: 34 },
+      { id: 3, name: "Sérum Hydro-Light", category: "Acondicionador Porosidad Baja", price: 30 },
+      { id: 4, name: "Huile Protectrice Thermo", category: "Óleo Reparador de Daño", price: 32 }
     ];
 
     const quizData = [
-      {
-        title: "¿Cuál es la textura natural de tu cabello?",
-        desc: "Selecciona tu patrón habitual.",
-        options: [
-          { label: "Liso", value: "liso", desc: "Lacio y propenso a acumular grasa en la raíz." },
-          { label: "Ondulado", value: "ondulado", desc: "Forma 'S' suave, sensible al frizz." },
-          { label: "Rizado / Afro", value: "rizado", desc: "Espirales que requieren nutrición intensa." }
-        ]
-      },
-      {
-        title: "¿Cómo sientes la porosidad?",
-        desc: "Capacidad para retener humedad.",
-        options: [
-          { label: "Porosidad Baja", value: "baja", desc: "Tarda mucho en mojarse y en secarse." },
-          { label: "Porosidad Media", value: "media", desc: "Equilibrado y de fácil manejo." },
-          { label: "Porosidad Alta", value: "alta", desc: "Absorbe rápido pero se seca quebradizo." }
-        ]
-      },
-      {
-        title: "¿Estado de tu cuero cabelludo?",
-        desc: "Base esencial del tratamiento.",
-        options: [
-          { label: "Seco / Sensible", value: "seco", desc: "Sensación de tirantez o picazón." },
-          { label: "Equilibrado", value: "normal", desc: "Sin resequedad ni exceso de grasa." },
-          { label: "Tendencia Grasa", value: "graso", desc: "Requiere lavado constante para frescura." }
-        ]
-      }
+      { title: "1. Patrón de Onda Natural", desc: "Forma de la hebra.", layout: "grid", options: [{ label: "Liso", value: "liso", icon: "📏", desc: "Recto." }, { label: "Ondulado", value: "ondulado", icon: "〰️", desc: "Ondas." }, { label: "Rizado", value: "rizado", icon: "🌀", desc: "Espirales." }, { label: "Afro", value: "afro", icon: "➰", desc: "En Z." }] },
+      { title: "2. Test de Porosidad Capilar", desc: "Reacción al agua.", layout: "list", options: [{ label: "Flota", value: "baja", icon: "🧊", desc: "Baja." }, { label: "Medio", value: "media", icon: "💧", desc: "Media." }, { label: "Hunde", value: "alta", icon: "⚓", desc: "Alta." }] },
+      { title: "3. Grosor de la Hebra", desc: "Comparación con hilo.", layout: "list", options: [{ label: "Fino", value: "fino", icon: "🪡", desc: "Delgado." }, { label: "Medio", value: "medio", icon: "🧵", desc: "Estándar." }, { label: "Grueso", value: "grueso", icon: "🧶", desc: "Fuerte." }] },
+      { title: "4. Condición del Cuero Cabelludo", desc: "A las 24 hrs.", layout: "list", options: [{ label: "Tendencia Grasa", value: "graso", icon: "✨", desc: "Lavado diario." }, { label: "Equilibrado / Normal", value: "normal", icon: "🌿", desc: "Limpio 2-3 días." }, { label: "Seco o Tirante", value: "seco", icon: "🌵", desc: "Resequedad." }] },
+      { title: "5. Nivel de Daño", desc: "Procesos recientes.", layout: "list", options: [{ label: "Virgen", value: "sin_dano", icon: "🌱", desc: "Sin químico." }, { label: "Uso Térmico", value: "calor", icon: "🔥", desc: "Plancha/Secador." }, { label: "Decolorado", value: "quimico", icon: "🧪", desc: "Tinte/Químico." }] }
     ];
 
-    let cartCount = 0;
     let currentStep = 0;
     let userAnswers = {};
     let selectedOptionValue = null;
+    let cart = [];
+    let hasDiscount = false;
 
-    // Métodos expuestos a nivel global (window)
+    // Maneja la simulación del formulario localmente
+    window.handleFakeSubmit = function(e) {
+      e.preventDefault();
+      hasDiscount = true;
+      document.getElementById('form-success-message').classList.remove('hidden');
+      updateCartUI();
+    };
+
     window.switchTab = function(tabName) {
       ['home', 'quiz', 'results', 'catalog'].forEach(t => {
         const el = document.getElementById(`tab-${t}`);
         if(el) el.classList.add('hidden');
       });
-      
-      const target = document.getElementById(`tab-${tabName}`);
-      if(target) target.classList.remove('hidden');
-
-      ['home', 'quiz', 'catalog'].forEach(n => {
-        const navBtn = document.getElementById(`nav-${n}`);
-        if(navBtn) {
-          if(n === tabName || (tabName === 'results' && n === 'quiz')) {
-            navBtn.classList.remove('opacity-60');
-            navBtn.classList.add('text-caramelo');
-          } else {
-            navBtn.classList.add('opacity-60');
-            navBtn.classList.remove('text-caramelo');
-          }
-        }
-      });
-    };
-
-    window.renderCatalog = function() {
-      const grid = document.getElementById('catalog-grid');
-      if(!grid) return;
-      grid.innerHTML = '';
-      catalogData.forEach(p => {
-        grid.innerHTML += `
-          <div class="bg-white p-3 rounded-2xl border border-cafe/15 flex flex-col justify-between shadow-sm">
-            <div>
-              <span class="text-[9px] text-cafe font-semibold uppercase">${p.category}</span>
-              <h4 class="font-serif text-base text-caramelo mt-0.5">${p.name}</h4>
-              <p class="text-xs font-bold text-caramelo mt-1">${p.price}</p>
-            </div>
-            <button onclick="openModal(${p.id})" class="mt-3 py-1.5 px-3 bg-vainilla text-caramelo rounded-full text-[10px] font-medium border border-cafe/10 hover:bg-rosa transition-all cursor-pointer">
-              Ver Detalles
-            </button>
-          </div>
-        `;
-      });
-    };
-
-    window.openModal = function(productId) {
-      const p = catalogData.find(item => item.id === productId);
-      if(!p) return;
-
-      document.getElementById('modal-category').innerText = p.category;
-      document.getElementById('modal-title').innerText = p.name;
-      document.getElementById('modal-desc').innerText = p.desc;
-      document.getElementById('modal-ingredients').innerText = p.ingredients;
-      document.getElementById('modal-price').innerText = p.price;
-      
-      const addBtn = document.getElementById('modal-add-btn');
-      addBtn.onclick = () => {
-        cartCount++;
-        document.getElementById('cart-count').innerText = cartCount;
-        closeModal();
-      };
-
-      document.getElementById('product-modal').classList.remove('hidden');
-    };
-
-    window.closeModal = function() {
-      document.getElementById('product-modal').classList.add('hidden');
+      document.getElementById(`tab-${tabName}`).classList.remove('hidden');
     };
 
     window.renderQuestion = function() {
@@ -302,7 +222,6 @@
       document.getElementById('step-label').innerText = `Paso ${currentStep + 1} de ${quizData.length}`;
       document.getElementById('step-percentage').innerText = `${Math.round(((currentStep + 1) / quizData.length) * 100)}%`;
       document.getElementById('progress-bar').style.width = `${((currentStep + 1) / quizData.length) * 100}%`;
-      
       document.getElementById('question-title').innerText = q.title;
       document.getElementById('question-desc').innerText = q.desc;
 
@@ -314,29 +233,32 @@
       nextBtn.disabled = true;
       nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
 
+      container.className = q.layout === 'grid' ? "grid grid-cols-2 gap-2.5" : "grid grid-cols-1 gap-2.5";
+
       q.options.forEach(opt => {
         const card = document.createElement('div');
-        card.className = "p-3.5 rounded-2xl bg-white border border-cafe/15 cursor-pointer transition-all text-left shadow-sm";
+        card.className = "p-3 rounded-2xl bg-white border border-cafe/15 cursor-pointer transition-all flex items-start space-x-3 hover:border-caramelo";
         card.onclick = () => selectOption(card, opt.value);
         card.innerHTML = `
-          <div class="font-serif text-base text-caramelo">${opt.label}</div>
-          <div class="text-[11px] text-cafe/70 mt-0.5">${opt.desc}</div>
+          <span class="text-xl bg-vainilla/50 p-1.5 rounded-xl">${opt.icon || '✨'}</span>
+          <div>
+            <div class="font-serif text-sm font-semibold text-caramelo">${opt.label}</div>
+            <div class="text-[10px] text-cafe/80 mt-0.5">${opt.desc}</div>
+          </div>
         `;
         container.appendChild(card);
       });
-
-      nextBtn.innerText = currentStep === quizData.length - 1 ? "Ver Diagnóstico" : "Continuar";
     };
 
     window.selectOption = function(element, value) {
       document.querySelectorAll('#options-container > div').forEach(el => {
-        el.classList.remove('bg-vainilla', 'border-caramelo', 'ring-1', 'ring-caramelo');
+        el.classList.remove('bg-vainilla', 'border-caramelo', 'ring-2');
         el.classList.add('bg-white');
       });
       element.classList.remove('bg-white');
-      element.classList.add('bg-vainilla', 'border-caramelo', 'ring-1', 'ring-caramelo');
-      
+      element.classList.add('bg-vainilla', 'border-caramelo', 'ring-2');
       selectedOptionValue = value;
+      
       const nextBtn = document.getElementById('next-btn');
       nextBtn.disabled = false;
       nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
@@ -345,7 +267,6 @@
     window.nextQuestion = function() {
       if (!selectedOptionValue) return;
       userAnswers[currentStep] = selectedOptionValue;
-
       if (currentStep < quizData.length - 1) {
         currentStep++;
         renderQuestion();
@@ -356,32 +277,99 @@
 
     window.showResults = function() {
       switchTab('results');
-
       document.getElementById('profile-summary').innerText = 
-        `Cabello ${userAnswers[0]} de porosidad ${userAnswers[1]} con cuero cabelludo ${userAnswers[2]}. Tu hebra requiere un ritual de hidratación profunda y sellado térmico.`;
+        `Porosidad ${userAnswers[1].toUpperCase()} con textura ${userAnswers[0]} y cuero cabelludo ${userAnswers[3]}. Tratamiento proteico optimizado listo.`;
+      
+      window.currentRecommendedRitual = [catalogData[0], userAnswers[1] === 'alta' ? catalogData[1] : catalogData[2], catalogData[3]];
 
-      const productsContainer = document.getElementById('products-container');
-      productsContainer.innerHTML = `
-        <div class="p-3 bg-white rounded-xl border border-cafe/15 flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-lg bg-rosa/50 flex items-center justify-center font-serif text-caramelo font-bold">01</div>
+      const container = document.getElementById('products-container');
+      container.innerHTML = window.currentRecommendedRitual.map(p => `
+        <div class="p-3 bg-white rounded-xl border border-cafe/15 flex items-center justify-between shadow-sm">
           <div>
-            <h4 class="font-serif text-sm text-caramelo">Elixir de Vanille</h4>
-            <p class="text-[10px] text-cafe">Limpieza delicada nutritiva.</p>
+            <h4 class="font-serif text-xs font-semibold text-caramelo">${p.name}</h4>
+            <p class="text-[9px] text-cafe">${p.category}</p>
           </div>
+          <span class="text-xs font-bold text-caramelo">$${p.price} USD</span>
         </div>
-        <div class="p-3 bg-white rounded-xl border border-cafe/15 flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-lg bg-vainilla flex items-center justify-center font-serif text-caramelo font-bold">02</div>
-          <div>
-            <h4 class="font-serif text-sm text-caramelo">Masque Caramel</h4>
-            <p class="text-[10px] text-cafe">Tratamiento para porosidad ${userAnswers[1]}.</p>
-          </div>
-        </div>
-      `;
+      `).join('');
     };
 
-    // Inicialización al cargar el árbol del DOM
+    window.addToCart = function(id) {
+      const prod = catalogData.find(p => p.id === id);
+      const item = cart.find(i => i.id === id);
+      if(item) item.qty++;
+      else cart.push({ ...prod, qty: 1 });
+      updateCartUI();
+    };
+
+    window.addRitualToCart = function() {
+      if(window.currentRecommendedRitual) {
+        window.currentRecommendedRitual.forEach(p => addToCart(p.id));
+        toggleCartModal(true);
+      }
+    };
+
+    window.removeFromCart = function(id) {
+      cart = cart.filter(i => i.id !== id);
+      updateCartUI();
+    };
+
+    window.updateCartUI = function() {
+      document.getElementById('cart-count').innerText = cart.reduce((s, i) => s + i.qty, 0);
+      const list = document.getElementById('cart-items-list');
+      const subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      
+      const discountAmount = hasDiscount ? subtotal * 0.10 : 0;
+      const total = subtotal - discountAmount;
+
+      if(hasDiscount && cart.length > 0) {
+        document.getElementById('discount-badge').classList.remove('hidden');
+        document.getElementById('discount-badge').classList.add('flex');
+        document.getElementById('discount-amount').innerText = `-$${discountAmount.toFixed(2)} USD`;
+      }
+
+      if(cart.length === 0) {
+        list.innerHTML = `<p class="text-xs text-cafe/70 text-center py-8">Tu carrito está vacío.</p>`;
+        document.getElementById('cart-total').innerText = `$0 USD`;
+        return;
+      }
+
+      list.innerHTML = cart.map(i => `
+        <div class="p-3 bg-white rounded-xl border border-cafe/15 flex items-center justify-between">
+          <div>
+            <h4 class="font-serif text-xs font-semibold text-caramelo">${i.name}</h4>
+            <p class="text-[9px] text-cafe">$${i.price} USD x ${i.qty}</p>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="text-xs font-bold text-caramelo">$${i.price * i.qty} USD</span>
+            <button onclick="removeFromCart(${i.id})" class="text-xs text-red-400">🗑️</button>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('cart-total').innerText = `$${total.toFixed(2)} USD`;
+    };
+
+    window.toggleCartModal = function(show) {
+      document.getElementById('cart-modal').classList.toggle('hidden', !show);
+      if(show) updateCartUI();
+    };
+
+    window.checkoutWhatsApp = function() {
+      if(cart.length === 0) return;
+      let msg = "Bonjour Le Maison Vanille! ✨ Quisiera solicitar mis productos:\n\n";
+      cart.forEach(i => msg += `• ${i.name} (x${i.qty}) - $${i.price * i.qty} USD\n`);
+      
+      const subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      const total = hasDiscount ? subtotal * 0.90 : subtotal;
+      
+      if(hasDiscount) msg += `\n🎁 *Descuento 10% Aplicado*`;
+      msg += `\n*Total a pagar: $${total.toFixed(2)} USD*`;
+
+      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
-      renderCatalog();
       renderQuestion();
     });
   </script>
