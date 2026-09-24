@@ -6,7 +6,7 @@
   <title>Le Maison Vanille — Mi Reto Capilar & Visagismo</title>
   
   <!-- CDN Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com?v=1.2"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -109,7 +109,7 @@
         </div>
       </section>
 
-      <!-- VISTA 2: CUESTIONARIO EN LENGUAJE CLARO -->
+      <!-- VISTA 2: CUESTIONARIO DE 8 PASOS -->
       <section id="tab-quiz" class="p-5 hidden">
         <div class="mb-4">
           <div class="flex justify-between text-xs text-cafe mb-1">
@@ -131,7 +131,7 @@
         </button>
       </section>
 
-      <!-- VISTA 3: RESULTADOS (DIAGNÓSTICO GRATIS + PAYWALL DE RECOMENDACIONES) -->
+      <!-- VISTA 3: RESULTADOS (DIAGNÓSTICO GRATIS + PAYWALL A $99 MXN) -->
       <section id="tab-results" class="p-5 hidden space-y-4">
         <div class="text-center">
           <span class="inline-block px-3 py-1 bg-green-100 text-green-800 text-[9px] rounded-full font-medium">Diagnóstico Gratuito Completado ✨</span>
@@ -158,19 +158,19 @@
           <p id="profile-summary" class="text-[11px] text-caramelo/80 italic leading-snug pt-1"></p>
         </div>
 
-        <!-- 2. TARJETA PAYWALL / BLOQUEO -->
+        <!-- 2. TARJETA PAYWALL ($99 MXN / 20 TOKENS LMV) -->
         <div id="paywall-banner" class="bg-gradient-to-br from-vainilla via-rosa/50 to-beige p-5 rounded-2xl border border-caramelo/30 text-center space-y-3 shadow-md relative overflow-hidden">
           <div class="inline-block bg-caramelo text-crema text-[9px] px-2.5 py-0.5 rounded-full font-semibold uppercase tracking-wider">
             🔒 Asesoría Personalizada Premium
           </div>
           <h3 class="font-serif text-base text-caramelo font-bold leading-tight">Desbloquea tus Recomendaciones Personalizadas</h3>
           <p class="text-xs text-caramelo/80 leading-relaxed">
-            Obtén la recomendación de <strong>corte de cabello ideal según tu cara</strong>, tipo de flequillo y la guía completa de <strong>tratamientos capilares recomendados con su modo de uso</strong>.
+            Obtén la recomendación del <strong>corte ideal según la forma de tu cara</strong>, tipo de flequillo y la guía completa de <strong>tratamientos capilares específicos con su modo de uso</strong>.
           </p>
 
           <div class="pt-2 space-y-2">
             <button onclick="unlockViaWhatsApp()" class="w-full py-2.5 bg-caramelo text-crema rounded-full text-xs font-bold shadow hover:bg-cafe transition-all cursor-pointer flex items-center justify-center space-x-1.5">
-              <span>Desbloquear Reporte Completo ($49 MXN)</span>
+              <span>Desbloquear Reporte Completo ($99 MXN)</span>
               <span>💬</span>
             </button>
             <button onclick="unlockViaTokens()" class="w-full py-2 bg-white text-caramelo border border-cafe/30 rounded-full text-[11px] font-semibold hover:bg-vainilla transition-all cursor-pointer flex items-center justify-center space-x-1">
@@ -235,10 +235,10 @@
         <div id="days-challenge-list" class="space-y-2.5"></div>
       </section>
 
-      <!-- VISTA 5: BOUTIQUE CON LAS FOTOS REALES DE TU CARPETA ASSETS -->
+      <!-- VISTA 5: BOUTIQUE CON 13 PRODUCTOS -->
       <section id="tab-catalog" class="p-5 hidden">
         <h2 class="font-serif text-xl text-caramelo mb-1 text-center font-semibold">Boutique Maison</h2>
-        <p class="text-xs text-cafe/80 text-center mb-4">Líneas de tratamiento capilar con precios reales de mercado.</p>
+        <p class="text-xs text-cafe/80 text-center mb-4">Catálogo completo de tratamientos capilares con precios reales.</p>
         <div class="grid grid-cols-2 gap-3" id="catalog-grid"></div>
       </section>
 
@@ -334,7 +334,7 @@
   </main>
 
   <script>
-    // BASE DE DATOS DE PRODUCTOS CON RUTAS EXACTAS A TU CARPETA ASSETS
+    // MATRIZ DE PRODUCTOS CON TAGS TÉCNICOS PARA ASOCIACIÓN INTELIGENTE
     const catalogData = [
       { 
         id: 1, 
@@ -343,6 +343,7 @@
         price: 95.00, 
         image: "./assets/hairfood-cacao.jpg", 
         desc: "Mascarilla 3en1 para nutrición e hidratación de rizos secos.",
+        tags: ["rizado", "afro", "alta", "seco"],
         benefit: "Aporta nutrición intensa para definir ondas y rizos, reduciendo el encrespamiento.",
         howToUse: "Aplica de medios a puntas sobre el cabello húmedo tras el lavado. Deja actuar 3 minutos y enjuaga."
       },
@@ -353,6 +354,7 @@
         price: 75.00, 
         image: "./assets/hairfood-aguacate.jpg", 
         desc: "Fórmula 98% natural rica en lípidos nutritivos esenciales.",
+        tags: ["ondulado", "rizado", "seco", "grueso"],
         benefit: "Devuelve la suavidad y flexibilidad al cabello reseco o áspero al tacto.",
         howToUse: "Úsalo como acondicionador diario o como mascarilla intensiva una vez por semana durante 5 minutos."
       },
@@ -363,33 +365,124 @@
         price: 75.00, 
         image: "./assets/hairfood-sandia.jpg", 
         desc: "Revitaliza la hebra y aporta brillo sin pesadez.",
+        tags: ["liso", "fino", "normal", "media"],
         benefit: "Aporta cuerpo, movimiento y un brillo radiante manteniendo la ligereza natural.",
         howToUse: "Aplica una pequeña cantidad en el cabello húmedo antes del peinado o como crema sin enjuague."
       },
       { 
         id: 4, 
+        name: "Hair Food Aloe Vera 350ml", 
+        category: "Hidratación Fresca", 
+        price: 75.00, 
+        image: "./assets/hair-food-aloe-vera.jpg", 
+        desc: "Hidratación ligera para cabello deshidratado.",
+        tags: ["liso", "ondulado", "fino", "normal"],
+        benefit: "Inyección de agua pura y aloe vera para desenredar y suavizar al instante.",
+        howToUse: "Aplica tras el champú de medios a puntas o sobre el cabello seco para refrescar las puntas."
+      },
+      { 
+        id: 5, 
+        name: "Hair Food Piña Reparación 350ml", 
+        category: "Puntas Abiertas", 
+        price: 78.00, 
+        image: "./assets/hair-food-piña.jpg", 
+        desc: "Tratamiento orgánico para cabello largo con puntas frágiles.",
+        tags: ["calor", "quimico", "fino", "alta"],
+        benefit: "Sella la fibra capilar y previene el quiebre de las puntas por calor o fricción.",
+        howToUse: "Úsalo como mascarilla de 3 minutos de 2 a 3 veces por semana."
+      },
+      { 
+        id: 6, 
+        name: "Hair Food Plátano Nutrición 350ml", 
+        category: "Cabello Muy Seco", 
+        price: 75.00, 
+        image: "./assets/hair-food-platano.jpg", 
+        desc: "Nutrición intensa con extracto de banana para cabello hambriento.",
+        tags: ["grueso", "seco", "quimico", "alta"],
+        benefit: "Transforma la textura áspera en una melena sedosa y manejable.",
+        howToUse: "Aplica sobre el cabello húmedo, deja reposar durante 5 minutos y aclarado completo."
+      },
+      { 
+        id: 7, 
+        name: "Hair Food Revitalizante Goji 350ml", 
+        category: "Cabello Teñido", 
+        price: 78.00, 
+        image: "./assets/hair-food-revitalizante.jpg", 
+        desc: "Protección de color y brillo vivo con bayas de Goji.",
+        tags: ["quimico", "liso", "ondulado", "media"],
+        benefit: "Mantiene la intensidad del tinte y protege contra la opacidad oxidativa.",
+        howToUse: "Aplica de medios a puntas después del tinte o lavado habitual."
+      },
+      { 
+        id: 8, 
         name: "Elvive Dream Liso Sérum 100ml", 
         category: "Anti-Frizz 7 Días", 
         price: 85.00, 
         image: "./assets/elvive-dreamliso.jpg", 
         desc: "Protección térmica y control de humedad de larga duración.",
+        tags: ["liso", "ondulado", "calor", "graso"],
         benefit: "Protege del calor de planchas y bloquea la humedad para mantener el cabello dócil.",
         howToUse: "Distribuye de 1 a 2 presiones sobre el cabello húmedo antes de usar secador o sobre el cabello seco."
       },
       { 
-        id: 5, 
+        id: 9, 
         name: "Elvive Hyaluron Plump Serum 150ml", 
         category: "Hidratación Rellenadora", 
         price: 89.00, 
         image: "./assets/elvive-hyaluron.jpg", 
         desc: "Inyección de ácido hialurónico para hidratación 72h.",
+        tags: ["fino", "baja", "normal", "liso"],
         benefit: "Rellena la fibra capilar deshidratada al instante, aportando cuerpo y soltura.",
         howToUse: "Vaporiza sobre el cabello seco o mojado a 15 cm de distancia en cualquier momento. No requiere enjuague."
+      },
+      { 
+        id: 10, 
+        name: "Herbal Essences Rizos Definidos 300ml", 
+        category: "Definición Natural", 
+        price: 82.00, 
+        image: "./assets/herbal-essences-rizos.jpg", 
+        desc: "Crema para peinar con bio:renew para rizos con movimiento.",
+        tags: ["rizado", "ondulado", "normal", "media"],
+        benefit: "Controla el encrespamiento y activa el patrón natural del rizo con aroma botánico.",
+        howToUse: "Aplica sobre el cabello húmedo usando la técnica de mulsing o scrunch."
+      },
+      { 
+        id: 11, 
+        name: "L'Oréal Absolute Repair Oil 90ml", 
+        category: "Reparación Profesional", 
+        price: 240.00, 
+        image: "./assets/loreal-absolute-repair-oil.jpg", 
+        desc: "Aceite concentrado reestructurante para cabello dañado.",
+        tags: ["quimico", "calor", "alta", "grueso"],
+        benefit: "Proporciona brillo supremo, tacto sedoso y reconstrucción profunda instantánea.",
+        howToUse: "Aplica 1 a 2 gotas en la palma de las manos y distribuye uniformemente en puntas secas o húmedas."
+      },
+      { 
+        id: 12, 
+        name: "Pantene Repair & Protect 300ml", 
+        category: "Restauración Intensa", 
+        price: 68.00, 
+        image: "./assets/pantene-repair-protect.jpg", 
+        desc: "Tratamiento ampolla/crema con Pro-Vitaminas concentradas.",
+        tags: ["calor", "quimico", "seco", "media"],
+        benefit: "Combate el daño de meses en solo 3 minutos de aplicación.",
+        howToUse: "Aplica después del champú de medios a puntas, deja actuar 3 minutos y enjuaga bien."
+      },
+      { 
+        id: 13, 
+        name: "Pantene Rizos Definidos 300ml", 
+        category: "Rizos Miel & Pro-V", 
+        price: 68.00, 
+        image: "./assets/pantene-rizos.jpg", 
+        desc: "Crema de peinar para rizos definidos hasta por 24 horas.",
+        tags: ["rizado", "afro", "grueso", "seco"],
+        benefit: "Memoria de forma para el rizo con protección contra la humedad.",
+        howToUse: "Aplica sobre el cabello húmedo, peina como de costumbre y deja secar al aire libre."
       }
     ];
 
     const quizData = [
-      { title: "1. ¿Cómo es la forma de tu cabello al natural?", desc: "Selecciona la imagen que más se parezca a tu textura:", layout: "grid", options: [{ label: "Completamente Liso", value: "liso", icon: "📏", desc: "Cae recto sin formar ondas." }, { label: "Ondulado (Forma de S)", value: "ondulado", icon: "〰️", desc: "Forma ondas suaves." }, { label: "Rizado / Resortes", value: "rizado", icon: "🌀", desc: "Forma espirales bien definidas." }, { label: "Afro / Muy Ajustado", value: "afro", icon: "➰", desc: "Patrón apretado en Z." }] },
+      { title: "1. ¿Cómo es la forma de tu cabello al natural?", desc: "Selecciona la opción que más se parezca a tu textura:", layout: "grid", options: [{ label: "Completamente Liso", value: "liso", icon: "📏", desc: "Cae recto sin formar ondas." }, { label: "Ondulado (Forma de S)", value: "ondulado", icon: "〰️", desc: "Forma ondas suaves." }, { label: "Rizado / Resortes", value: "rizado", icon: "🌀", desc: "Forma espirales bien definidas." }, { label: "Afro / Muy Ajustado", value: "afro", icon: "➰", desc: "Patrón apretado en Z." }] },
       { title: "2. ¿Qué le pasa a tu cabello cuando le cae agua?", desc: "Prueba rápida de hidratación:", layout: "list", options: [{ label: "Tarda mucho en mojarse y secarse", value: "baja", icon: "🛡️", desc: "Cuesta que absorba agua o crema." }, { label: "Se moja y seca de forma normal", value: "media", icon: "💧", desc: "Absorbe la humedad de forma equilibrada." }, { label: "Se moja al instante y se seca muy rápido", value: "alta", icon: "🧽", desc: "Absorbe todo pero se siente seco rápido." }] },
       { title: "3. ¿Cómo sientes el grosor de tus hebras?", desc: "Toma un cabello entre tus dedos:", layout: "list", options: [{ label: "Muy Delgado / Fino", value: "fino", icon: "🪡", desc: "Casi no se siente al tacto y se enreda." }, { label: "Grosor Medio", value: "medio", icon: "🧵", desc: "Se siente suave pero firme." }, { label: "Grueso y Resistente", value: "grueso", icon: "🧶", desc: "Se siente fuerte y se nota mucho." }] },
       { title: "4. ¿Cómo sientes la raíz al día siguiente de lavarlo?", desc: "Sensación en el cuero cabelludo:", layout: "list", options: [{ label: "Se ve con brillo u oleosidad", value: "graso", icon: "✨", desc: "Suele sentirse pesado rápido." }, { label: "Se siente fresco y limpio", value: "normal", icon: "🌿", desc: "Mantiene el equilibrio sin molestia." }, { label: "Se siente tirante o con picazón", value: "seco", icon: "🌵", desc: "Necesita hidratación constante." }] },
@@ -624,6 +717,7 @@
       }
     };
 
+    // ALGORITMO INTELIGENTE DE RECOMENDACIÓN MATRICIAL
     window.showResults = function() {
       switchTab('results');
       
@@ -683,11 +777,29 @@
       document.getElementById('bangs-rec').innerText = bangsRec;
       document.getElementById('styling-rec').innerText = stylingRec;
 
-      window.currentRecommendedRitual = [
-        catalogData[0], 
-        userAnswers[1] === 'alta' ? catalogData[1] : catalogData[2], 
-        catalogData[3]
+      // MOTOR DE REGLAS: EVALUACIÓN DE AFINIDAD DE TAGS CON RESPUESTAS
+      const activeUserTags = [
+        userAnswers[0], // liso, ondulado, rizado, afro
+        userAnswers[1], // baja, media, alta
+        userAnswers[2], // fino, medio, grueso
+        userAnswers[3], // graso, normal, seco
+        userAnswers[4]  // sin_dano, calor, quimico
       ];
+
+      // PUNTUAR CADA PRODUCTO SEGÚN LAS COINCIDENCIAS
+      const scoredProducts = catalogData.map(product => {
+        let score = 0;
+        product.tags.forEach(tag => {
+          if (activeUserTags.includes(tag)) {
+            score += 1;
+          }
+        });
+        return { ...product, score };
+      });
+
+      // ORDENAR POR MAYOR AFINIDAD Y SELECCIONAR LOS 3 MEJORES
+      scoredProducts.sort((a, b) => b.score - a.score);
+      window.currentRecommendedRitual = scoredProducts.slice(0, 3);
 
       const container = document.getElementById('products-container');
       container.innerHTML = window.currentRecommendedRitual.map(p => `
@@ -719,7 +831,7 @@
     };
 
     window.unlockViaWhatsApp = function() {
-      const msg = "Bonjour Le Maison Vanille! ✨ Quisiera solicitar el pago de $49 MXN para desbloquear mi Reporte Completo de Visagismo y Tratamientos Capilares.";
+      const msg = "Bonjour Le Maison Vanille! ✨ Quisiera solicitar el pago de $99 MXN para desbloquear mi Reporte Completo de Visagismo y Tratamientos Capilares.";
       window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
       userData.isPremiumUnlocked = true;
       saveUserData();
@@ -745,7 +857,7 @@
       }
     }
 
-    // RENDERIZADO DEL CATÁLOGO (USANDO TUS FOTOS DE LA CARPETA ASSETS)
+    // RENDERIZADO DEL CATÁLOGO COMPLETO
     window.renderCatalog = function() {
       const grid = document.getElementById('catalog-grid');
       if(!grid) return;
